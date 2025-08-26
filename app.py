@@ -2,8 +2,17 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import requests
 import re
 from datetime import datetime
-from werkzeug.security import check_password_hash
-from users import USUARIO, API_URL, CA_API_URL, URL_CEP
+from werkzeug.security import check_password_hash, generate_password_hash
+
+
+USUARIO = {
+    "Marcella": generate_password_hash("@Marcella2025"),
+    "Fernando": generate_password_hash("@Fernando0000"),
+}
+
+API_URL = "http://131.163.96.121:8000/buscar?codigo_rastreio="
+CA_API_URL = "http://131.163.96.121:8000/buscar_ca?"
+URL_CEP = "http://131.163.96.121:8000/Buscar_cep?cep="
 
 mensagemErro = "Desculpe, parece que o Servidor está offline, por favor me mande mensagem!"
 app = Flask(__name__)
@@ -133,3 +142,4 @@ def buscar_cep():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
